@@ -12,6 +12,7 @@ class EntertainmentsWidget extends StatefulWidget {
 }
 
 class _EntertainmentsWidgetState extends State<EntertainmentsWidget> {
+  bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +22,7 @@ class _EntertainmentsWidgetState extends State<EntertainmentsWidget> {
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: entertainmentsList.length,
+            itemCount: isExpanded ? entertainmentsList.length : 2,
             itemExtent: 58.w,
             itemBuilder: (context, index) {
               return Row(
@@ -56,7 +57,28 @@ class _EntertainmentsWidgetState extends State<EntertainmentsWidget> {
                 ],
               );
             },
-          )
+          ),
+          InkWell(
+            onTap: () {
+              setState(() {
+                isExpanded = !isExpanded;
+              });
+            },
+            child: RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  color: Color.fromRGBO(23, 16, 16, 1),
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Jost',
+                ),
+                children: [
+                  TextSpan(text: isExpanded ? 'Свернуть ▲' : 'Развернуть ▼'),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
