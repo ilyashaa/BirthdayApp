@@ -1,7 +1,8 @@
-import 'package:birthday_app/models/image_start.dart';
+import 'package:birthday_app/entity/image_start.dart';
 import 'package:birthday_app/screens/entertainments_widget.dart';
 import 'package:birthday_app/screens/guest_button.dart';
 import 'package:birthday_app/screens/menu_list_widget.dart';
+import 'package:birthday_app/maps_yandex.dart';
 import 'package:flutter/material.dart';
 import 'package:birthday_app/screens/image_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,6 +31,7 @@ class MainScreen extends StatelessWidget {
             GuessButton(),
             MenuListWidget(),
             EntertainmentsWidget(),
+            YandexMapWidget(),
           ],
         ),
       ),
