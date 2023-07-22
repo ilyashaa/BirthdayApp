@@ -20,6 +20,6 @@ You will also find a full menu of dishes, indicating the indigriets, their numbe
 
 
 
-- This project was created during an internship with Mobyte.dev
+- This project was created during an internship with [Mobyte.dev](https://mobyte.dev/)
 
 
