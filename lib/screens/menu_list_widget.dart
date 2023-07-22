@@ -24,6 +24,7 @@ class _MenuListWidgetState extends State<MenuListWidget> {
               style: TextStyle(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.w400,
+                  height: 24.h / 14.sp,
                   fontFamily: 'Yeseva'),
             ),
           ),
@@ -37,40 +38,43 @@ class _MenuListWidgetState extends State<MenuListWidget> {
                   mainAxisSpacing: 0.h),
               itemCount: isExpanded ? menuList.length : 2,
               itemBuilder: (context, index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: ClipRRect(
-                        borderRadius: index % 2 == 0
-                            ? BorderRadius.only(
-                                topRight: Radius.circular(25.r),
-                                bottomLeft: Radius.circular(25.r))
-                            : BorderRadius.only(
-                                topLeft: Radius.circular(25.r),
-                                bottomRight: Radius.circular(25.r)),
-                        child: Image(
-                          image: AssetImage(menuList[index].way),
-                          height: 140.r,
-                          width: 140.r,
-                          fit: BoxFit.cover,
+                return SingleChildScrollView(
+                  physics: NeverScrollableScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: ClipRRect(
+                          borderRadius: index % 2 == 0
+                              ? BorderRadius.only(
+                                  topRight: Radius.circular(25.r),
+                                  bottomLeft: Radius.circular(25.r))
+                              : BorderRadius.only(
+                                  topLeft: Radius.circular(25.r),
+                                  bottomRight: Radius.circular(25.r)),
+                          child: Image(
+                            image: AssetImage(menuList[index].way),
+                            height: 140.r,
+                            width: 140.r,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    Text(
-                      menuList[index].foodName.toString(),
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontFamily: 'Jost',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
-                        height: 14.h / 14.sp,
-                        color: const Color.fromRGBO(78, 67, 67, 1),
-                      ),
-                      textAlign: TextAlign.left,
-                    )
-                  ],
+                      Text(
+                        menuList[index].foodName.toString(),
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontFamily: 'Jost',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14.sp,
+                          height: 14.h / 14.sp,
+                          color: const Color.fromRGBO(78, 67, 67, 1),
+                        ),
+                        textAlign: TextAlign.left,
+                      )
+                    ],
+                  ),
                 );
               }),
           Container(
@@ -86,6 +90,7 @@ class _MenuListWidgetState extends State<MenuListWidget> {
                     decoration: TextDecoration.underline,
                     color: Color.fromRGBO(23, 16, 16, 1),
                     fontSize: 14.sp,
+                    height: 20.13.h / 14.sp,
                     fontWeight: FontWeight.w400,
                     fontFamily: 'Jost',
                   ),

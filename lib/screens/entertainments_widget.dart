@@ -23,31 +23,36 @@ class _EntertainmentsWidgetState extends State<EntertainmentsWidget> {
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: isExpanded ? entertainmentsList.length : 2,
-            itemExtent: 58.w,
+            itemExtent: 47.w,
             itemBuilder: (context, index) {
               return Row(
                 children: [
                   Image.asset(entertainmentsList[index].way),
                   Padding(
-                    padding: EdgeInsets.all(7.w),
+                    padding: EdgeInsets.only(left: 7.w),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           entertainmentsList[index].title,
                           style: TextStyle(
-                              color: Color.fromRGBO(23, 16, 16, 1),
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Jost'),
+                            color: Color.fromRGBO(23, 16, 16, 1),
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Jost',
+                            height: 20.23.h / 14.sp,
+                          ),
                         ),
                         Text(
                           entertainmentsList[index].subTitle,
                           style: TextStyle(
-                              color: Color.fromRGBO(78, 67, 67, 1),
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Jost'),
+                            color: Color.fromRGBO(78, 67, 67, 1),
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Jost',
+                            height: 20.23.h / 14.sp,
+                          ),
                         )
                       ],
                     ),
@@ -72,6 +77,7 @@ class _EntertainmentsWidgetState extends State<EntertainmentsWidget> {
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   fontFamily: 'Jost',
+                  height: 20.23.h / 14.sp,
                 ),
                 children: [
                   TextSpan(text: isExpanded ? 'Свернуть ▲' : 'Развернуть ▼'),

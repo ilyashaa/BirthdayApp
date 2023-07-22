@@ -37,17 +37,18 @@ class _ImageTopState extends State<ImageTop> {
                           image: AssetImage(imageStartList[index].way)),
                     ),
                     child: DefaultTextStyle(
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
-                        fontSize: 24,
+                        fontSize: 24.sp,
+                        height: 24.h / 14.sp,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'Jost',
                       ),
                       child: Stack(
                         children: [
                           Positioned(
-                            top: 15,
-                            left: 15,
+                            top: 15.w,
+                            left: 15.h,
                             child: Container(
                               width: 175.w,
                               child: Text(
@@ -66,7 +67,7 @@ class _ImageTopState extends State<ImageTop> {
             },
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 240.0),
+            padding: EdgeInsets.only(top: 240.0.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -91,12 +92,12 @@ class Indicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 400),
-      margin: const EdgeInsets.symmetric(horizontal: 7.0),
+      margin: EdgeInsets.symmetric(horizontal: 7.0.h),
       width: isActive ? 30.0.w : 5.0.w,
       height: 5.h,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(8.0.r),
       ),
     );
   }
@@ -109,12 +110,12 @@ class InvitationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
+    return Padding(
+      padding: EdgeInsets.all(16.0.w),
       child: Text(
         'Приглашаю своих дорогих друзей отметить мой день рождения в замечательном месте с множеством развлечений, вкусных блюд и хорошим настроением!',
         style: TextStyle(
-          fontSize: 14,
+          fontSize: 14.sp,
           fontWeight: FontWeight.w400,
           fontFamily: 'Jost',
           color: Colors.black,

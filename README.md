@@ -1,16 +1,25 @@
-# birthday_app
 
-A new Flutter project.
+# Birthday App
 
-## Getting Started
+This application will help you to gather all your wonderful friends in one place on one date! 
+You will be able to choose the type of entertainment together, book birthday gifts, find out the venue and time of the event! 
+You will also find a full menu of dishes, indicating the indigriets, their number and the photo of the dish itself.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Authors
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [@ilyashaaa](https://github.com/ilyashaa)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## 🔗 Links
+[![Telegram](https://img.shields.io/badge/-telegram-red?color=white&logo=telegram&logoColor=blue)](https://t.me/ilpalik)
+![Instagram](https://img.shields.io/badge/-Instagram-red?color=white&logo=instagram&logoColor=pin)
+
+
+## Created for
+
+
+
+- This project was created during an internship with Mobyte.dev
+
+

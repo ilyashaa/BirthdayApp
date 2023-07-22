@@ -7,7 +7,7 @@ class GuessButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16),
+      padding: EdgeInsets.only(left: 16.w, right: 16.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -25,12 +25,13 @@ class GuessButton extends StatelessWidget {
                 ),
               ),
               onPressed: () {},
-              child: const Text(
+              child: Text(
                 'Список гостей',
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontFamily: 'Jost',
                     fontWeight: FontWeight.w600,
+                    height: 23.12.h / 16.sp,
                     color: Colors.white),
               ),
             ),
@@ -45,15 +46,16 @@ class GuessButton extends StatelessWidget {
                 ),
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
+                      borderRadius: BorderRadius.circular(15.r)),
                 ),
               ),
               onPressed: () {},
-              child: const Text(
+              child: Text(
                 'Вишлист',
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontFamily: 'Jost',
+                    height: 23.12.h / 16.sp,
                     fontWeight: FontWeight.w600,
                     color: Colors.white),
               ),
