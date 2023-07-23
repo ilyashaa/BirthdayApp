@@ -3,14 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MenuListWidget extends StatefulWidget {
-  const MenuListWidget({super.key});
+  const MenuListWidget({
+    super.key,
+  });
 
   @override
-  State<MenuListWidget> createState() => _MenuListWidgetState();
+  State<MenuListWidget> createState() =>
+      _MenuListWidgetState(isButtonPressed: true);
 }
 
 class _MenuListWidgetState extends State<MenuListWidget> {
+  _MenuListWidgetState({required this.isButtonPressed});
   bool isExpanded = true;
+  bool isButtonPressed;
+  int isCurrentIndex = -1;
+
+  void buttonPressed(int index) {
+    setState(() {
+      if (isCurrentIndex == index) {
+        isCurrentIndex = -1;
+        return;
+      }
+      isCurrentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -44,20 +61,41 @@ class _MenuListWidgetState extends State<MenuListWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GestureDetector(
-                        onTap: () {},
-                        child: ClipRRect(
-                          borderRadius: index % 2 == 0
-                              ? BorderRadius.only(
-                                  topRight: Radius.circular(25.r),
-                                  bottomLeft: Radius.circular(25.r))
-                              : BorderRadius.only(
-                                  topLeft: Radius.circular(25.r),
-                                  bottomRight: Radius.circular(25.r)),
-                          child: Image(
-                            image: AssetImage(menuList[index].way),
-                            height: 140.r,
-                            width: 140.r,
-                            fit: BoxFit.cover,
+                        onTap: () => buttonPressed(index),
+                        child: AnimatedContainer(
+                          decoration: BoxDecoration(
+                              borderRadius: index % 2 == 0
+                                  ? BorderRadius.only(
+                                      topRight: Radius.circular(25.r),
+                                      bottomLeft: Radius.circular(25.r))
+                                  : BorderRadius.only(
+                                      topLeft: Radius.circular(25.r),
+                                      bottomRight: Radius.circular(25.r)),
+                              color: Colors.white,
+                              boxShadow: index == isCurrentIndex
+                                  ? [
+                                      BoxShadow(
+                                          color: Color.fromRGBO(253, 172, 7, 1),
+                                          offset: Offset(3.r, 3.r),
+                                          blurRadius: 7.r,
+                                          spreadRadius: 3.r)
+                                    ]
+                                  : []),
+                          duration: Duration(milliseconds: 800),
+                          child: ClipRRect(
+                            borderRadius: index % 2 == 0
+                                ? BorderRadius.only(
+                                    topRight: Radius.circular(25.r),
+                                    bottomLeft: Radius.circular(25.r))
+                                : BorderRadius.only(
+                                    topLeft: Radius.circular(25.r),
+                                    bottomRight: Radius.circular(25.r)),
+                            child: Image(
+                              image: AssetImage(menuList[index].way),
+                              height: 140.r,
+                              width: 140.r,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
