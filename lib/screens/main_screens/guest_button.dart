@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class GuessButton extends StatelessWidget {
-  const GuessButton({super.key});
+class GuestButton extends StatelessWidget {
+  const GuestButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,9 @@ class GuessButton extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15)),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/a');
+              },
               child: Text(
                 'Список гостей',
                 style: TextStyle(
