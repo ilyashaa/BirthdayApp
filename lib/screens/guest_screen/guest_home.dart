@@ -1,25 +1,28 @@
+import 'package:birthday_app/model/guest_add_widget_model.dart';
+import 'package:birthday_app/model/guest_home_model.dart';
 import 'package:birthday_app/screens/guest_screen/new_guest_add.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class GuestHome extends StatelessWidget {
+class GuestHome extends StatefulWidget {
   const GuestHome({super.key});
 
-  void _showForm(BuildContext context) {
-    showModalBottomSheet(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(10.r),
-        ),
-      ),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      context: context,
-      builder: (context) => NewGuest(),
-    );
+  @override
+  State<GuestHome> createState() => _GuestHomeState();
+}
+
+class _GuestHomeState extends State<GuestHome> {
+  final model = GuestHomeWidgetModel();
+  @override
+  Widget build(BuildContext context) {
+    return GuestHomeWidgetModelProvider(
+        model: model, child: const _GuestHomeWidgetBody());
   }
+}
+
+class _GuestHomeWidgetBody extends StatelessWidget {
+  const _GuestHomeWidgetBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +52,12 @@ class GuestHome extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          child: Column(children: [StartWidget(), ListGuestWidget()]),
+          child: Column(children: [StartWidget(), _ListGuestWidget()]),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showForm(context),
+        onPressed: () =>
+            GuestHomeWidgetModelProvider.read(context)?.model.showForm(context),
         child: Icon(
           Icons.add,
           color: Colors.white,
@@ -64,28 +68,27 @@ class GuestHome extends StatelessWidget {
   }
 }
 
-class ListGuestWidget extends StatefulWidget {
-  const ListGuestWidget({
+class _ListGuestWidget extends StatelessWidget {
+  const _ListGuestWidget({
     super.key,
   });
 
   @override
-  State<ListGuestWidget> createState() => _ListGuestWidgetState();
-}
-
-class _ListGuestWidgetState extends State<ListGuestWidget> {
-  @override
   Widget build(BuildContext context) {
+    final guestCount =
+        GuestHomeWidgetModelProvider.watch(context)?.model.guest.length ?? 0;
     return ListView.separated(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: 10,
+      itemCount: guestCount,
       separatorBuilder: (BuildContext context, int index) {
-        return TestWidget();
-      },
-      itemBuilder: (BuildContext context, int index) {
         return Divider(
           height: 10,
+        );
+      },
+      itemBuilder: (BuildContext context, int index) {
+        return TestWidget(
+          indexInList: index,
         );
       },
     );
@@ -130,16 +133,23 @@ class StartWidget extends StatelessWidget {
 }
 
 class TestWidget extends StatelessWidget {
-  const TestWidget({super.key});
+  final int indexInList;
+  const TestWidget({
+    super.key,
+    required this.indexInList,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final model = GuestHomeWidgetModelProvider.read(context)!.model;
+    final guest = model.guest[indexInList];
+
     return Slidable(
       endActionPane: ActionPane(
         motion: StretchMotion(),
         children: [
           SlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) => model.deleteGuest(indexInList),
             backgroundColor: Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             icon: Icons.delete,
@@ -148,7 +158,7 @@ class TestWidget extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        title: Text('Text for me'),
+        title: Text(guest.name),
       ),
     );
   }
