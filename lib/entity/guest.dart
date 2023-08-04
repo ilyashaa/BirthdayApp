@@ -4,12 +4,13 @@ part 'guest.g.dart';
 
 @HiveType(typeId: 1)
 class Guest {
-  Guest(
-      {required this.name,
-      required this.surname,
-      required this.data,
-      required this.number,
-      required this.profession});
+  Guest({
+    required this.name,
+    required this.surname,
+    required this.data,
+    required this.number,
+    required this.profession,
+  });
 
   @HiveField(0)
   String name;

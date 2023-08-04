@@ -1,6 +1,7 @@
-import 'package:birthday_app/model/guest_add_widget_model.dart';
+import 'package:birthday_app/bloc/guest_bloc.dart';
+
 import 'package:birthday_app/model/guest_home_model.dart';
-import 'package:birthday_app/screens/guest_screen/new_guest_add.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -16,8 +17,12 @@ class _GuestHomeState extends State<GuestHome> {
   final model = GuestHomeWidgetModel();
   @override
   Widget build(BuildContext context) {
-    return GuestHomeWidgetModelProvider(
-        model: model, child: const _GuestHomeWidgetBody());
+    return BlocBuilder<GuestBloc, GuestState>(
+      builder: (context, state) {
+        return GuestHomeWidgetModelProvider(
+            model: model, child: const _GuestHomeWidgetBody());
+      },
+    );
   }
 }
 
@@ -52,17 +57,17 @@ class _GuestHomeWidgetBody extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          child: Column(children: [StartWidget(), _ListGuestWidget()]),
+          child: Column(children: [CountAndFilBarWidget(), _ListGuestWidget()]),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () =>
             GuestHomeWidgetModelProvider.read(context)?.model.showForm(context),
-        child: Icon(
+        backgroundColor: Colors.green,
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
-        backgroundColor: Colors.green,
       ),
     );
   }
@@ -77,17 +82,13 @@ class _ListGuestWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final guestCount =
         GuestHomeWidgetModelProvider.watch(context)?.model.guest.length ?? 0;
-    return ListView.separated(
+
+    return ListView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemCount: guestCount,
-      separatorBuilder: (BuildContext context, int index) {
-        return Divider(
-          height: 10,
-        );
-      },
-      itemBuilder: (BuildContext context, int index) {
-        return TestWidget(
+      itemBuilder: (context, index) {
+        return GuestWidget(
           indexInList: index,
         );
       },
@@ -95,20 +96,31 @@ class _ListGuestWidget extends StatelessWidget {
   }
 }
 
-class StartWidget extends StatelessWidget {
-  const StartWidget({
+class CountAndFilBarWidget extends StatelessWidget {
+  const CountAndFilBarWidget({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final guestCount =
+        GuestHomeWidgetModelProvider.watch(context)?.model.guest.length;
+    var formCount = '';
+
+    if (guestCount == 0 || guestCount! >= 5) {
+      formCount = 'гостей';
+    } else if (guestCount == 1) {
+      formCount = 'гость';
+    } else {
+      formCount = 'гостя';
+    }
     return Padding(
       padding: EdgeInsets.all(16.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '2 гостя',
+            '$guestCount $formCount',
             style: TextStyle(
                 fontFamily: 'Jost',
                 fontWeight: FontWeight.w400,
@@ -132,33 +144,78 @@ class StartWidget extends StatelessWidget {
   }
 }
 
-class TestWidget extends StatelessWidget {
+class GuestWidget extends StatelessWidget {
   final int indexInList;
-  const TestWidget({
+  const GuestWidget({
     super.key,
     required this.indexInList,
   });
+
+  void _deleteGuestAll(context) {
+    GuestHomeWidgetModelProvider.read(context)!.model.deleteGuest(indexInList);
+  }
 
   @override
   Widget build(BuildContext context) {
     final model = GuestHomeWidgetModelProvider.read(context)!.model;
     final guest = model.guest[indexInList];
 
-    return Slidable(
-      endActionPane: ActionPane(
-        motion: StretchMotion(),
-        children: [
-          SlidableAction(
-            onPressed: (context) => model.deleteGuest(indexInList),
-            backgroundColor: Color(0xFFFE4A49),
-            foregroundColor: Colors.white,
-            icon: Icons.delete,
-            label: 'Delete',
-          )
-        ],
-      ),
-      child: ListTile(
-        title: Text(guest.name),
+    return GestureDetector(
+      onDoubleTap: () =>
+          GuestHomeWidgetModelProvider.read(context)?.model.showForm(context),
+      child: Slidable(
+        endActionPane: ActionPane(
+          motion: StretchMotion(),
+          children: [
+            SlidableAction(
+              onPressed: (context) => model.deleteGuest(indexInList),
+              backgroundColor: Color(0xFFFE4A49),
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'Delete',
+            )
+          ],
+        ),
+        child: Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.h),
+              child: Image.asset('assets/avatarImage/avatar.png'),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  guest.name + guest.surname,
+                  style: TextStyle(
+                      fontFamily: 'Jost',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14.sp,
+                      height: 20.23.h / 14.sp),
+                ),
+                Text(
+                  guest.data + ' лет',
+                  style: TextStyle(
+                      fontFamily: 'Jost',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12.sp,
+                      height: 12.h / 12.sp),
+                ),
+                Text(
+                  guest.profession,
+                  style: TextStyle(
+                      fontFamily: 'Jost',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14.sp,
+                      height: 20.23.h / 14.sp),
+                ),
+                Divider(
+                  height: 16.h,
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

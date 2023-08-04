@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class ImageStart {
   final String title;
   final String way;

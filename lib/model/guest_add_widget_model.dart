@@ -8,6 +8,7 @@ class GuestListAddModel {
   var guestData = '';
   var guestNumber = '';
   var guestProfession = '';
+
   void saveChange(BuildContext context) async {
     if (guestName.isEmpty) return;
     if (!Hive.isAdapterRegistered(1)) {

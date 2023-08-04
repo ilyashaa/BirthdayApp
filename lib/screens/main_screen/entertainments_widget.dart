@@ -1,7 +1,7 @@
 import 'package:birthday_app/entity/entertaiment_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EntertainmentsWidget extends StatefulWidget {

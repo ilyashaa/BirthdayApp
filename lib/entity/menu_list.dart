@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class MenuList {
   final String foodName;
   final String way;
