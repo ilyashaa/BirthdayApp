@@ -1,7 +1,8 @@
 import 'package:birthday_app/bloc/guest_bloc.dart';
-import 'package:birthday_app/screens/guest_screen/guest_home.dart';
-import 'package:birthday_app/screens/guest_screen/new_guest_add.dart';
-import 'package:birthday_app/screens/main_screen/main_screen.dart';
+import 'package:birthday_app/presentation/pages/guest/widgets/guest_home.dart';
+import 'package:birthday_app/presentation/pages/guest/widgets/new_guest_add.dart';
+import 'package:birthday_app/presentation/pages/home/widgets/main_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

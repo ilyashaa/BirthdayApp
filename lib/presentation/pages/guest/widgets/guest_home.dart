@@ -1,6 +1,6 @@
 import 'package:birthday_app/bloc/guest_bloc.dart';
 
-import 'package:birthday_app/model/guest_home_model.dart';
+import 'package:birthday_app/data/models/guest/guest_home_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

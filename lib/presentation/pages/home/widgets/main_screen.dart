@@ -1,8 +1,8 @@
-import 'package:birthday_app/screens/main_screen/entertainments_widget.dart';
-import 'package:birthday_app/screens/main_screen/guest_button.dart';
-import 'package:birthday_app/screens/main_screen/image_top.dart';
-import 'package:birthday_app/screens/main_screen/menu_list_widget.dart';
-import 'package:birthday_app/screens/main_screen/maps_yandex.dart';
+import 'package:birthday_app/presentation/pages/home/widgets/entertainments_widget.dart';
+import 'package:birthday_app/presentation/pages/home/widgets/guest_button.dart';
+import 'package:birthday_app/presentation/pages/home/widgets/image_top.dart';
+import 'package:birthday_app/presentation/pages/home/widgets/maps_yandex.dart';
+import 'package:birthday_app/presentation/pages/home/widgets/menu_list_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';

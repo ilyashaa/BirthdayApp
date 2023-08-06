@@ -1,4 +1,4 @@
-import 'package:birthday_app/entity/entertaiment_list.dart';
+import 'package:birthday_app/domain/entity/home/entertaiment_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 

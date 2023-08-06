@@ -1,4 +1,4 @@
-import 'package:birthday_app/model/guest_add_widget_model.dart';
+import 'package:birthday_app/data/models/guest/guest_add_widget_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';

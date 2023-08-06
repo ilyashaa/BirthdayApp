@@ -1,5 +1,5 @@
-import 'package:birthday_app/entity/guest.dart';
-import 'package:birthday_app/screens/guest_screen/new_guest_add.dart';
+import 'package:birthday_app/domain/entity/guest/guest.dart';
+import 'package:birthday_app/presentation/pages/guest/widgets/new_guest_add.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

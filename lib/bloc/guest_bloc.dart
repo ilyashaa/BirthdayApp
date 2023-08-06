@@ -1,4 +1,4 @@
-import 'package:birthday_app/entity/guest.dart';
+import 'package:birthday_app/domain/entity/guest/guest.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
